@@ -1,8 +1,9 @@
+//src/app/api/tasks/route.js
 
 import { getResponseMessage } from "@/helper/responseMessage";
 import { Task } from "@/models/task";
 import { NextResponse } from "next/server";
-// import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { connectDb } from "@/helper/db";
 
 //get all the tasks
@@ -12,7 +13,7 @@ export async function GET(request) {
     const tasks = await Task.find();
     return NextResponse.json(tasks);
   } catch (error) {
-    console.log(error);
+    console.log("Error in gettting task data: ",error);
     return "Error in gettting data !!", 404, false;
   }
 }
@@ -21,18 +22,18 @@ export async function GET(request) {
 export async function POST(request) {
   const { title, content, userId, status } = await request.json();
 
-  // // fetching logged in user id
-  // const authToken = request.cookies.get("authToken")?.value;
-  // // console.log(authToken);
-  // const data = jwt.verify(authToken, process.env.JWT_KEY);
-  // // console.log(data);
-  // console.log(data._id);
+  // fetching logged in user id
+  const authToken = request.cookies.get("authToken")?.value;
+  // console.log(authToken);
+  const data = jwt.verify(authToken, process.env.JWT_KEY);
+  // console.log(data);
+  console.log(data._id);
 
   try {
     const task = new Task({
       title,
       content,
-      userId,
+      userId: data._id,
       status,
     });
 
@@ -42,9 +43,10 @@ export async function POST(request) {
       status: 201,
     });
   } catch (error) {
-    console.log(error);
-    console.log("my message");
+    console.log("Failed to create Task !! ",error);
+   // console.log("my message");
     return getResponseMessage("Failed to create Task !! ", 500, false);
   }
 }
 
+//

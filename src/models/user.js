@@ -1,3 +1,4 @@
+//src/models/user.js
 import mongoose,{Schema} from "mongoose";
 import { Profiler } from "react";
 
@@ -13,8 +14,14 @@ const UserSchema=new Schema({
       type:String,
       require:[true,"Password Required !!"],
     },
-    about:String,
-    ProfilURL:String,
+    confirm_Password:{
+      type:String,
+      require:[true,"Password Required !!"],
+    },
+    profileURL:{
+      type: String, // Assuming you'll store the URL of the image
+    default: '/profile-default-icon.png' // Provide a default image path
+    }
     // address:{
     //   street:string,
     //   city:string,

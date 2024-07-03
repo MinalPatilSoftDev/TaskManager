@@ -1,7 +1,8 @@
+//src/app/api/users/route.js
 import { connectDb } from "@/helper/db";
 import { User } from "@/models/user";
 import { NextResponse } from "next/server";
-
+import bcrypt from "bcryptjs"
 // connectDb();
 
 // get request function - display all users
@@ -9,7 +10,7 @@ export async function GET(request) {
   let users = [];
   try {
      await connectDb();
-    users = await User.find().select("-password");  //select("-password") means password not displayed in the output panel
+    users = await User.find().select("-password -confirm_Password");  //select("-password") means password not displayed in the output panel
   } catch (error) {
     console.log(error);
     
@@ -30,9 +31,9 @@ export async function POST(request) {
 
    // fetch user detail from  request
 
-   const { name, email, password, about, profileURL } = await request.json();
+   const { name, email, password,confirm_Password, profileURL } = await request.json();
 
-   console.log({ name, email, password, about, profileURL });
+   //console.log("Profile URL:",{ name, email, password, confirm_Password, profileURL });
  
    // create user object with user model
  
@@ -40,17 +41,22 @@ export async function POST(request) {
      name,
      email,
      password,
-     about,
+     confirm_Password,
      profileURL,
    });
  
 
    try {
      // save the object to  database
-    //  user.password = bcrypt.hashSync(
-    //    user.password,
-    //    parseInt(process.env.BCRYPT_SALT)
-    //  );
+     user.password = bcrypt.hashSync(
+       user.password,
+       parseInt(process.env.BCRYPT_SALT)
+     );
+
+     user.confirm_Password=bcrypt.hashSync(
+      user.confirm_Password,
+      parseInt(process.env.BCRYPT_SALT)
+     )
  
     //  console.log(user);
      await connectDb();

@@ -1,9 +1,15 @@
-import Image from "next/image";
+
+import BannerSection from "@/components/homepage/HomeBanner";
+
+export const metadata = {
+  title: "Home : Work Manager",
+};
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Hello</h1>
-    </main>
+    <div>
+      {/* banner section  */}
+      <BannerSection />
+    </div>
   );
 }

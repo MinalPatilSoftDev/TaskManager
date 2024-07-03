@@ -12,7 +12,11 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        'ruby-red': '#e74157',
+        'blush-pink': '#DC7684',
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };

@@ -1,3 +1,4 @@
+//src/app/api/users/[userId]/route,js
 import { User } from "@/models/user";
 import { NextResponse } from "next/server";
 
@@ -5,7 +6,7 @@ import { NextResponse } from "next/server";
 // get user
 export async function GET(request, { params }) {
   const { userId } = params;
-  const user = await User.findById(userId).select("-password");  //select("-password") means password not displayed in the output panel
+  const user = await User.findById(userId).select("-password -confirm_Password");  //select("-password") means password not displayed in the output panel
   return NextResponse.json(user);
 }
 
@@ -37,13 +38,13 @@ export async function DELETE(request, { params }) {
 export async function PUT(request, { params }) {
   const { userId } = params;
 
-  const { name, password, about, profileURL } = await request.json();
+  const { name, password, confirm_Password, profileURL } = await request.json();
 
   try {
     const user = await User.findById(userId);
 
     user.name = name;
-    user.about = about;
+    user.confirm_Password = confirm_Password;
     user.password = password;
     user.profileURL = profileURL;
     // add more informationss

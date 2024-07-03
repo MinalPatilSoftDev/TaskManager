@@ -76,7 +76,7 @@ const AddTask = () => {
             </label>
             <input
               type="text"
-              className="w-full p-3 rounded-3xl text-black bg-gray-300 focus:outline-none  border border-gray-400 shadow-md shadow-gray-700"
+              className="w-full p-3 rounded-3xl text-black bg-gray-200 focus:outline-none  border border-gray-300 shadow-md shadow-gray-700"
               id="task_title"
               name="task_title"
               onChange={(event) => {
@@ -97,7 +97,7 @@ const AddTask = () => {
               Content
             </label>
             <textarea
-              className="w-full p-3 rounded-3xl text-black  bg-gray-300 focus:outline-none border border-gray-400 shadow-md shadow-gray-700"
+              className="w-full p-3 rounded-3xl text-black  bg-gray-200 focus:outline-none border border-gray-300 shadow-md shadow-gray-700"
               id="task_content"
               rows={5}
               name="task_content"
@@ -122,7 +122,7 @@ const AddTask = () => {
 
             <select
               id="task_status"
-              className="w-full p-3 px-4 custom-select rounded-3xl text-black   bg-gray-300  border border-gray-400 shadow-md shadow-gray-700"
+              className="w-full p-3 px-4 custom-select rounded-3xl text-black   bg-gray-200  border border-gray-300 shadow-md shadow-gray-700"
               name="task_status"
               onChange={(event) => {
                 setTask({
@@ -147,10 +147,10 @@ const AddTask = () => {
 
           {/* button  actions */}
           <div className="mt-4 flex justify-center">
-            <button className="bg-gray-500  py-2 px-3 rounded-full shadow-lg  shadow-gray-700 hover:bg-gray-600 text-lg text-white">
+            <button className="bg-blue-500  py-2 px-3 rounded-full shadow-lg  shadow-gray-500 hover:bg-blue-600 text-lg text-white">
               Add Task{" "}
             </button>
-            <button className=" bg-gray-500 py-2 px-3 rounded-full shadow-lg shadow-gray-700 hover:bg-gray-600 text-lg text-white ms-3">
+            <button className=" bg-blue-500 py-2 px-3 rounded-full shadow-lg shadow-gray-500 hover:bg-blue-600 text-lg text-white ms-3">
               Clear
             </button>
           </div>

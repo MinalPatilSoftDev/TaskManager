@@ -23,12 +23,12 @@ export async function GET(request, { params }) {
 export async function PUT(request, { params }) {
   try {
     const { taskId } = params;
-    console.log('taskId:', taskId);
+    //console.log('taskId:', taskId);
 
     const { title, content, status } = await request.json();
 
     let task = await Task.findById(taskId);
-    console.log('task:', task);
+   // console.log('task:', task);
 
     // (task.title = title), (task.content = content), (task.status = status);
     task.title = title;

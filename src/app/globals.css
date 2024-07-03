@@ -32,7 +32,59 @@ body {
   }
 } */
 
+.HomeBImage{
+  background-image:url("/HomeB.jpg");
+}
+
+@keyframes pulse-twice {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+
+
+.animate-pulse-twice {
+  animation: pulse-twice 2s ease-in-out 2;
+}
 
 .custom-select{                                                /* Add task-add padding to the default arrow in a select dropdown  */
   border-right: 16px solid transparent;
+}
+
+/* styles.css */
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure the menu appears above other content */
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu ul li {
+  padding: 8px 16px;
+}
+
+.dropdown-menu ul li:hover {
+  cursor: pointer;
+}
+
+/* Optional: Style the user menu */
+
+.user-menu:hover .dropdown-menu {
+  display: block;
 }
